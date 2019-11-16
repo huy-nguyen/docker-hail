@@ -1,3 +1,4 @@
+![](https://github.com/huy-nguyen/docker-hail/workflows/.github/workflows/dockerimage.yml/badge.svg)
 
 This is a Docker image for interactive usage of the [Hail](https://hail.is/) genomic data analysis library.
 It contains installations of [Jupyter notebook](https://jupyter.org/), Java 8 and Hail itself.
