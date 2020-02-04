@@ -1,4 +1,4 @@
-FROM jupyter/base-notebook:python-3.7.3
+FROM jupyter/base-notebook:python-3.7.4
 
 LABEL maintainer="me@huy.dev"
 
@@ -34,6 +34,6 @@ USER jovyan
 # Install oh-my-zsh for interactive shell
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
 
-RUN pip install hail
+RUN pip install hail==0.2.31
 
 WORKDIR $HOME/work
