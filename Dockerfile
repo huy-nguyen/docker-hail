@@ -34,6 +34,6 @@ USER jovyan
 # Install oh-my-zsh for interactive shell
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
 
-RUN pip install hail==0.2.31
+RUN pip install hail==0.2.32
 
 WORKDIR $HOME/work
