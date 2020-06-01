@@ -1,0 +1,27 @@
+version: "2"
+vars:
+  HAIL_VERSION: "0.2.34"
+  # Tag of jupyter/base-notebook base image from
+  # https://hub.docker.com/r/jupyter/base-notebook
+  JUPYTER_BASE_NOTEBOOK_VERSION: python-3.7.6
+  # Derived variables:
+  TAG: huy123/hail:{{.HAIL_VERSION}}-base-notebook-{{.JUPYTER_BASE_NOTEBOOK_VERSION}}
+
+tasks:
+  build:
+    cmds:
+      - >
+        sed
+        '
+        s/JUPYTER_BASE_NOTEBOOK_VERSION/{{.JUPYTER_BASE_NOTEBOOK_VERSION}}/g;
+        s/HAIL_VERSION/{{.HAIL_VERSION}}/g;
+        '
+        Dockerfile.template
+        |
+        docker build
+        -t {{.TAG}}
+        -
+  push:
+    cmds:
+      - docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+      - docker push {{.TAG}}
