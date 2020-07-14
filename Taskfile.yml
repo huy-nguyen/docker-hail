@@ -5,7 +5,9 @@ vars:
   # https://hub.docker.com/r/jupyter/base-notebook
   JUPYTER_BASE_NOTEBOOK_VERSION: python-3.7.6
   # Derived variables:
-  TAG: huy123/hail:{{.HAIL_VERSION}}-base-notebook-{{.JUPYTER_BASE_NOTEBOOK_VERSION}}
+  DETAILED_TAG: huy123/hail:{{.HAIL_VERSION}}-base-notebook-{{.JUPYTER_BASE_NOTEBOOK_VERSION}}
+  LATEST_TAG: huy123/hail:latest
+
 
 tasks:
   build:
@@ -19,9 +21,11 @@ tasks:
         Dockerfile.template
         |
         docker build
-        -t {{.TAG}}
+        -t {{.DETAILED_TAG}}
+        -t {{.LATEST_TAG}}
         -
   push:
     cmds:
       - docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
-      - docker push {{.TAG}}
+      - docker push {{.DETAILED_TAG}}
+      - docker push {{.LATEST_TAG}}
